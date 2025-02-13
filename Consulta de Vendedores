@@ -16,7 +16,12 @@ INSERT INTO VENDEDORES (NOME, CARGO, SALARIO, DATA_ADMISSAO, INATIVO) VALUES
 ('Vendedor D', 'Cargo D', 3800.00, '2023-04-25', FALSE),
 ('Vendedor E', 'Cargo E', 4200.00, '2023-05-30', TRUE);
 
--- Query para listar vendedores
+-- Query para listar vendedores conforme a ordem desejada
 SELECT id_vendedor AS id, nome, salario
 FROM VENDEDORES
 WHERE id_vendedor IN (2, 4, 1)
+ORDER BY CASE 
+    WHEN id_vendedor = 2 THEN 1
+    WHEN id_vendedor = 4 THEN 2
+    WHEN id_vendedor = 1 THEN 3
+END;
