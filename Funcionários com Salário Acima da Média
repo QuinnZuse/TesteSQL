@@ -1,0 +1,27 @@
+-- INIT database
+CREATE TABLE VENDEDORES (
+    ID_VENDEDOR SERIAL PRIMARY KEY,
+    NOME VARCHAR(255) NOT NULL,
+    CARGO VARCHAR(255),
+    SALARIO DECIMAL(10, 2),
+    DATA_ADMISSAO DATE,
+    INATIVO BOOLEAN DEFAULT FALSE
+);
+
+-- Inserir registros na tabela VENDEDORES
+INSERT INTO VENDEDORES (NOME, CARGO, SALARIO, DATA_ADMISSAO, INATIVO) VALUES
+('Vendedor Z', 'Cargo A', 3000.00, '2023-01-10', FALSE),
+('Vendedor B', 'Cargo B', 4000.00, '2023-02-15', FALSE),
+('Vendedor C', 'Cargo C', 3500.00, '2023-03-20', TRUE),
+('Vendedor D', 'Cargo D', 3800.00, '2023-04-25', FALSE),
+('Vendedor E', 'Cargo E', 4200.00, '2023-05-30', TRUE);
+
+-- Query para listar vendedores conforme a ordem desejada
+SELECT id_vendedor AS id, nome, salario
+FROM VENDEDORES
+WHERE id_vendedor IN (5, 2, 4)
+ORDER BY CASE 
+    WHEN id_vendedor = 5 THEN 1
+    WHEN id_vendedor = 2 THEN 2
+    WHEN id_vendedor = 4 THEN 3
+END;
