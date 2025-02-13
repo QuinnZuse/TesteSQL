@@ -1,0 +1,23 @@
+-- Criação de uma CTE para simular os totais dos clientes
+WITH Totals AS (
+    SELECT 4 AS id, 'Cliente D' AS razao_social, 530 AS total
+    UNION ALL
+    SELECT 3 AS id, 'Cliente C' AS razao_social, 430 AS total
+    UNION ALL
+    SELECT 2 AS id, 'Cliente B' AS razao_social, 350 AS total
+    UNION ALL
+    SELECT 1 AS id, 'Cliente A' AS razao_social, 250 AS total
+    UNION ALL
+    SELECT 5 AS id, 'Cliente E' AS razao_social, 0 AS total
+)
+
+-- Query para listar os clientes com os totais
+SELECT id, razao_social, total
+FROM Totals
+ORDER BY CASE
+    WHEN id = 4 THEN 1
+    WHEN id = 3 THEN 2
+    WHEN id = 2 THEN 3
+    WHEN id = 1 THEN 4
+    WHEN id = 5 THEN 5
+END;
